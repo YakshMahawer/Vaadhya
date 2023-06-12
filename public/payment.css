@@ -1,0 +1,80 @@
+.paymentDiv{
+    top: -57px;
+    left: -260px;
+    height: 405px;
+    z-index: 4;
+    position: absolute;
+    background-color: black;
+    transform: translate(521px, 200px);
+    display: flex;
+    border-radius: 36px;
+    visibility: hidden;
+    z-index: 5;
+}
+
+.paymentDiv > form > label{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+.payButton{
+    font-family: 'Kanit', sans-serif;
+    background-color: #6233a7;
+    border: none;
+    height: auto;
+    padding: 0px;
+    font-size: 26px;
+    color: #000000;
+    width: 115px;
+    border-radius: 14px;
+    font-weight: bold;
+    margin-left: 108.5px;
+    cursor: pointer;
+}
+
+.paymentImg > img{
+    object-fit: cover;
+    width: 391px;
+    border-radius: 36px 0px 0px 36px;
+}
+
+.paymentDiv > form{
+    padding: 50px;
+    padding-top: 120px;
+}
+
+.paymentDiv > form > input{
+    border: none;
+    font-size: 17px;
+    font-family: 'Sofia Sans', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 5.5px;
+}
+
+#cflogo{
+    position: absolute;
+    height: 100px;
+    width: 165px;
+    top: 4px;
+    left: 600px;
+}
+
+#vlogo{
+    position: absolute;
+    height: 45px;
+    width: 105px;
+    top: 38px;
+    left: 471px;
+}
+
+.closePaymentDivButton{
+    background: transparent;
+    color: antiquewhite;
+    font-size: 32px;
+    height: fit-content;
+    left: 440px;
+    top: 12px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+}

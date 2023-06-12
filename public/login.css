@@ -1,0 +1,111 @@
+.grid{
+    display: grid;
+    visibility: hidden;
+    grid-template-columns: 400px 400px !important;
+    justify-content: center;
+    column-gap: 0px;
+    z-index: 10;
+    position: absolute;
+    top: 17%;
+    width: 800px;
+    left: 305px;
+}
+.loginPopUp{
+    z-index: 10;
+    padding: 0px 50px 11px 50px;
+    position: absolute;
+    height: auto;
+    width: 400px;
+    text-align: center;
+    background-color: #101010;
+    grid-column: 2/2;
+    border-radius: 0px 25px 25px 0px;
+}
+
+.options{
+    margin-bottom: 20px;
+}
+
+.options > button{
+    cursor: pointer;
+}
+.loglogo > img{
+    transform: translateX(48%);
+    height: 37px !important;
+    position: relative;
+    margin-bottom: 6px;
+    height: 31px;
+    padding: 14px;
+    padding-top: 0px;
+    margin-left: 57px;
+    margin-right: 858px;
+}
+.logInfo{
+    height: 248px;
+}
+
+.logtext{
+    font-size: 19px;
+    color: whitesmoke;
+    font-family: 'Hammersmith One', sans-serif;
+}
+input{
+    height: auto;
+    width: 100%;   
+    padding: 4px 10px;
+    margin: 6px 0;
+    box-sizing: border-box;
+    border: none;
+    font-size: 18px;
+}
+#createbut{
+    border-color: white ;
+}
+.opt{
+    background: none;
+    border: none;
+    font-size: 23px;
+    color: whitesmoke;
+    font-family: 'Hammersmith One', sans-serif;
+    border-bottom: 2px solid rgb(26,239,6);
+    margin-right: 30px;
+}
+
+.butopt{
+    height: auto;
+    background-color: rgb(251, 248, 248);
+    border: none;
+    font-size: 21px;
+    color: rgb(8, 8, 8);
+    font-family: 'Signika Negative', sans-serif;
+    padding: 5px 23px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.vector{
+    z-index: 10;
+    position: absolute;
+    height: auto;
+    width: 400px;
+}
+.vector > img{
+    border-radius: 25px 0px 0px 25px;
+    height: 410px;
+    width: 400px;
+}
+
+#errorState{
+    color: red;
+}
+
+.cross{
+    background: transparent;
+    color: antiquewhite;
+    font-size: 35px;
+    height: fit-content;
+    left: 215px;
+    top: 12px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+}

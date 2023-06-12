@@ -1,0 +1,160 @@
+.paymentMain{
+    max-height: fit-content;
+    position: absolute;
+    width: 900px;
+    top: 4px;
+}
+.payHeading{
+    display: flex;
+    width: 900px;
+    left: 380px;
+    margin-bottom: 22px;
+    transform: translateY(0px);
+}
+.logo{
+    background-color: black;
+    border-radius: 57%;
+    height: 89px;
+    width: 89px;
+}
+.logo > img{
+    height: 90px;
+    width: 90px;
+    object-fit: contain;
+}
+
+.businessName{
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 36px;
+    margin-left: 22px;
+    margin-top: -11px;
+}
+
+.payMoney{
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 30px;
+    transform: translateX(100%);
+    margin-top: 31px;
+}
+.method{
+    width: 900px;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: row; 
+}
+.paymentCategory{
+    display: flex;
+    width: 343px;
+    flex-direction: column;
+    transform: translateX(0%);
+    padding-top: 50px;
+}
+
+.paymentCategory > button{
+    border: none;
+    background: #faf9fa;
+    margin-bottom: 12px;
+    font-size: 19px;
+    font-family: 'Ubuntu', sans-serif;
+    color: #6930ca;
+    padding: 11px 0px 11px 16px;
+    width: 275px;
+    text-align: left;
+    border-radius: 19px;
+    cursor: pointer;
+}
+
+.paymentCategory > button:hover{
+    background: #6930ca;
+    color: white;
+}
+
+.paymentCategory > button:active{
+    background: #6930ca;
+    color: white;
+}
+
+.paymentCategory > button > i{
+    font-size: 21px;
+    margin-right: 8px;
+}
+.upi{
+    display: none;
+}
+.upi > a > button > img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: contain;
+    border: 2px solid;
+}
+
+.upi > a > button{
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.upi > p{
+    font-size: 21px;
+    margin-bottom: 35px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(42, 40, 40);
+    text-align: -webkit-center;
+}
+
+.categoryInfo{
+    width: 557px;
+    transform: translateX(0%);
+}
+
+.banks{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.banks > button > img{
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-right: 12px;
+    transform: translateY(4px);
+}
+
+.banks > button{
+    margin-bottom: 20px;
+    background-color: aliceblue;
+    margin-right: 10px;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 8px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.netbanking > p{
+    font-size: 21px;
+    margin-bottom: 35px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(42, 40, 40);
+    text-align: -webkit-center;
+}
+
+.netbanking{
+    display: none;
+}
+
+#payCard{
+    border: none;
+    background-color: 63;
+    background-color: #6930ca;
+    font-size: 24px;
+    font-family: 'Ubuntu', 'sans-serif';
+    font-weight: 800;
+    color: white;
+    padding: 5px 29px;
+    margin-left: 22px;
+}

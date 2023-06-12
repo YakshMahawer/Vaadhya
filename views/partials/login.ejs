@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid">
+    <div class="vector">
+        <img src="Images/logbg.jpg" alt="" srcset="">
+    </div>
+    
+    <div class="loginPopUp">
+            <button class="cross" onclick="closeLog()"><i class="fa-solid fa-xmark" id="crossIcon"></i></button>
+            <div class="loglogo">
+                <img src="Images/headerlogo.png" alt="" srcset="">
+            </div>
+            <p class="error"></p>
+            <div class="options">
+                <button onclick="change_logtype('in')" class="opt" id="logbut">LOGIN</button>
+                <button onclick="change_logtype('create')" class="opt" id="createbut">CREATE ACCOUNT</button>
+            </div>
+            <div class="logInfo" id="content">
+                <div class="logIn">
+                    <form action="/login" method="post">
+                        <label for="phone" class="logtext">Enter your phone number: </label>
+                        <br>
+                        <input type="number" name="phone" required>
+                        <br>
+                        <label for="password" class="logtext">Enter your password: </label>
+                        <br>
+                        <input type="text" name="password" required>
+                        <br>
+                        <button type="submit" class="butopt">LOG IN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const content = document.getElementById('content');
+    function closeLog(){
+        document.getElementsByClassName('content')[0].style.opacity = 1;
+        document.getElementsByClassName('grid')[0].style.visibility = 'hidden';
+        //document.getElementsByClassName('littleParda').style.visibility = 'hidden';
+        window.onscroll = function(){};
+    }
+    function checkpass(){
+        const np = document.getElementById('np');
+        const cp = document.getElementById('cp');
+        if(np.value !== cp.value){
+            document.getElementById('errorState').innerText = "Both Passwords Don't match";
+            returnToPreviousPage();
+            return false;
+        }
+        else{
+            document.getElementById("cform").submit();
+        }
+    }
+
+    function change_logtype(char){
+        if(char == 'create'){
+             content.innerHTML = '<div class="crateAcc"><form action="/create" method="post" id="cform"><label for="phone" class="logtext">Enter your phone number: </label><br><input type="number" name="phone" required><br><label for="password" class="logtext">New password: </label><br><input type="text" id = "np" name="npassword" required><br><label for="password" class="logtext">Confirm password: </label><br><input type="text" id = "cp" name="cpassword" required><br><button type="submit" onclick="event.preventDefault(); checkpass(); checkUser();" class="butopt">CREATE ACCOUNT</button></form></div> ';
+             document.getElementById('logbut').style.borderColor = 'white';
+            document.getElementById('createbut').style.borderColor = 'rgb(26,239,6)';
+        }
+        else{
+            content.innerHTML = '<div class="logIn"><form action="/login" method="post"><label for="phone" class="logtext">Enter your phone number: </label><br><input type="number" name="phone" required><br><label for="password" class="logtext">Enter your password: </label><br><input type="text" name="password" required><br><label for="password" ><button type="submit"  class="butopt">LOGIN</button></form></div> ';
+            document.getElementById('createbut').style.borderColor = 'white';
+            document.getElementById('logbut').style.borderColor = 'rgb(26,239,6)';  
+        }
+    }
+</script>
+</html>

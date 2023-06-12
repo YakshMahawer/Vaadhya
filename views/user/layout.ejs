@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="payment.css">
+    <title>Vaadhya - Feel The Temperature - The Indian Spotify</title>
+    <style>
+        .bar{
+            height: 100px;
+             width: 800px;
+             background-color: aquamarine;
+             position: fixed;
+             top: 500px;
+             z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <%- body %>
+    <%- include('../partials/player')%>
+    <%- include('../partials/payment') %>
+    <%- include('../partials/login')%>
+    <%- include('../partials/songs')%>
+</body>
+<script src="https://sdk.cashfree.com/js/ui/2.0.0/cashfree.sandbox.js"></script>
+</html>

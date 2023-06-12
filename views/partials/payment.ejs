@@ -1,0 +1,22 @@
+<div class="paymentDiv">
+  <div class="paymentImg">
+    <img src="Images/street.jpg" alt="" srcset="">
+  </div>
+    <img src="Images/cashfreelogo.png" alt="" srcset="" id="cflogo">
+    <img src="Images/headerlogo.png" alt="" srcset="" id="vlogo">
+    <div class="closePaymentDiv"><button class="closePaymentDivButton" onclick="closePaymentDiv()"><i class="fa-solid fa-xmark"></i></button></div>
+    <form action="payment" method="POST">
+      <label for="username">Your Username : </label>
+      <br>
+      <input type="text" value="<%= userName %>" name="username" readonly>
+      <label for="gmail">Enter your Email : </label>
+      <br>
+      <input type="email" name="gmail" required>
+      <br>
+      <label for="money">Amount : </label>
+      <br>
+      <input type="text" value = "99" name="money" readonly>
+      <br>
+      <button type="submit" class="payButton">PAY</button>
+    </form>
+</div>

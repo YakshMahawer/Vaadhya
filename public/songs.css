@@ -1,0 +1,86 @@
+.songs_albums_img > img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.parent{
+    top: 66px;
+    z-index: 4;
+    position: absolute;
+    overflow: visible;
+    background-color: #22201e;
+    width: 100%;
+    visibility: hidden;
+    padding: 4px;
+}
+
+
+.songs{
+    width: 1000px;
+    height: 55px;
+    display: flex;
+    margin: 15px;
+    padding: 8px;
+}
+.songs:hover{
+    background-color: #1c1b1b;
+    border-top: solid white 0.05px;
+    border-bottom: solid white 0.05px;
+}
+.song_details{
+    margin-left: 20px;
+    padding-top: 5px;
+}
+.song_name{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    font-size: 17.5px;
+}
+
+.artist_name{
+    padding: 0px;
+    margin-top: -34px;
+    font-family: 'Prompt', sans-serif;
+    color: azure;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.cd{
+    background-color: #121212;
+    border-radius: 50%;
+    position: relative;
+    height: 10px;
+    width: 10px;
+    top: -33px;
+    left: 20px;
+}
+
+.BackButton > button > i{
+    left: 15px;
+    z-index: 5;
+    font-size: 50px;
+    top: -58px;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    height: auto;
+    color: #93998d;
+}
+
+.BackButton > button{
+    background-color: transparent;
+    border: none;
+}
+
+.khufiya_song_button{
+    position: absolute;
+    height: 55px;
+    width: 1000px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}

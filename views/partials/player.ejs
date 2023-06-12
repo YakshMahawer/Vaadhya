@@ -1,0 +1,257 @@
+        <div class="player">
+        <div class="player_bar" style="visibility: hidden;">
+            <input type="range" value="0" id="progress">
+        </div>
+        <div class="completeColorBar"></div>
+        <div class="leftColorBar"></div>
+        <div class="main_player">
+            <audio id="hiddenPlayer">
+                <source src="" type="">
+            </audio>
+            <div class="song_logo">
+                <img src="Images/headerlogo.png" alt="" srcset="" id="cur_song_img">
+            </div>
+            <div class="cur_song_details">
+                <p class="cur_song_name">Listen To Your Favorite Songs</p>
+                <p class="cur_song_singers">With Bag Of Words Recommendation System</p>
+            </div>
+            <div class="player_buttons">
+                <button class = "p_prev" onclick="playPrevSong()"><i id = "prevSong" class="fa-solid fa-backward"></i></button>
+                <button class = "p_prev" onclick="playSong()"><i id="playPause" class="fa-solid fa-play"></i></button>
+                <button class = "p_prev" onclick="playNextSong()"><i id = "nextSong" class="fa-solid fa-forward"></i></button>
+            </div>
+        </div>
+    </div>
+<script>
+    class LinkedList{
+    constructor(){
+        this.head = null;
+    }
+    push(src, img_src, name, singers, id){
+        if(!this.head){
+            adcounter();
+            this.head = new SongList(src, img_src, name, singers, id);
+            return this.head;
+        }
+        else{
+            let cur = this.head;
+            while(cur.next != null){
+                cur = cur.next;
+            }
+            cur.next = new SongList(src, img_src, name, singers, id);
+            cur.next.prev = cur;
+            cur.next.next = null;
+            return cur.next;
+        }
+    }
+    delete(){
+        let cur = this.head;
+        while(cur.next != null){
+            cur = cur.next;
+        }
+        cur.prev.next = null;
+    }
+}
+class SongList{
+    constructor(src, img_src, name, singers, id){
+        this.src = src;
+        this.img_src = img_src;
+        this.songName = name;
+        this.songSinger = singers;
+        this.id = id;
+        this.next = null;
+        this.prev = null;
+    }
+}
+const list = new LinkedList();
+var currentPlayingSong = list.head;
+let progress = document.getElementById('progress');
+let player = document.getElementById('hiddenPlayer');
+let playPauseButton = document.getElementById('playPause');
+var completeBar = document.getElementsByClassName('completeColorBar')[0];
+var playCounter = 0;
+var songCounter = 0;
+var ad = 0;
+let playedSongArray = [];
+function ifNoPreviousSong(){
+    if(currentPlayingSong.prev == null){
+        document.getElementById('prevSong').style.color = 'grey';
+    }
+    else{
+        document.getElementById('prevSong').style.color = 'aquamarine';
+    }
+}
+function showAd(){
+    if(songCounter > 1){
+        document.getElementsByTagName('source')[0].src = '/Songs/AD.mp3';
+        document.getElementsByClassName('cur_song_name')[0].innerHTML = 'Ad By Vaadhya';
+        document.getElementsByClassName('cur_song_singers')[0].innerHTML = 'Yaksh.Stark';
+        document.getElementById('cur_song_img').src = '/Images/headerlogo.png';
+        player.load();
+        player.play();
+        document.getElementsByClassName('p_prev')[0].disabled = true;
+        document.getElementsByClassName('p_prev')[2].disabled = true;
+        progress.disabled = true;
+        songCounter = 0;
+        ad = 1;
+        setTimeout(()=>{
+            afterAd();
+        }, 12000);
+    }
+}
+player.onloadedmetadata = function(){
+    progress.max = player.duration;
+    progress.value = player.currentTime;
+}
+if(player.play()){
+    setInterval(()=>{
+        progress.value = player.currentTime;
+        if(progress.value > 30){
+            completeBar.style.width = ((progress.value/progress.max)*100 - 0.15) + '%';
+        }
+        else if(progress.value > 50 && progress.value < 80){
+            completeBar.style.width = progress.value/progress.max*100 + '%';
+        }
+        else if(progress.value > 80){
+            completeBar.style.width = ((progress.value/progress.max)*100 - 0.8) + '%';
+        }
+        else{
+            completeBar.style.width = 1.1 + (progress.value/progress.max)*100 + '%';
+        }
+        if(((progress.value/progress.max)*100) > 99.5){
+            playNextSong();
+        }
+    },500);
+}
+progress.onchange = function(){
+    player.play();
+    player.currentTime = progress.value;
+    playPauseButton.classList.add('fa-pause');
+    playPauseButton.classList.remove('fa-play');
+}
+function playSong(){
+    if(playPauseButton.classList.contains('fa-pause')){
+       player.pause();
+       playPauseButton.classList.add('fa-play');
+       playPauseButton.classList.remove('fa-pause');
+    }
+    else{
+        player.play();
+        playPauseButton.classList.add('fa-pause');
+        playPauseButton.classList.remove('fa-play');
+    }
+}
+
+function sendToHistory(song_name, song_album, song_singer, song_id){
+    const url = 'http://localhost:8000/saveToHistory'
+    const data = {
+        SongName: song_name,
+        SongAlbum: song_album,
+        SongSinger: song_singer,
+        SongId: song_id
+    };
+    const customHeaders = {
+        "Content-Type": "application/json",
+    }
+
+    fetch(url, {
+        method: "POST",
+        headers: customHeaders,
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
+}
+
+function curClickedSongPlay(a,b,c,d,e,prevCount){
+    sendToHistory(d,c,e,a);
+    playedSongArray.push(a);
+    if(prevCount == 0 || prevCount == '0'){
+        if(ad == 1){
+            list.delete();
+        }
+        currentPlayingSong = list.push(b,c,d,e,a);
+    }
+    if(document.getElementById('brahmastra').value == 'paid'){
+        console.log("No ad for u");
+    }
+    else{
+        showAd();
+    }
+    if(ad != 1){
+        if(playCounter > 10){
+            songCounter += 1;
+            playCounter = 0;
+        }
+        ifNoPreviousSong();
+        document.getElementsByTagName('source')[0].src = b;
+        document.getElementsByClassName('cur_song_name')[0].innerHTML = d;
+        document.getElementsByClassName('cur_song_singers')[0].innerHTML = e;
+        document.getElementById('cur_song_img').src = c;
+        player.load();
+        player.play();
+        playPauseButton.classList.add('fa-pause');
+        playPauseButton.classList.remove('fa-play');
+    }
+
+}
+function adcounter(){
+    setInterval(()=>{
+        playCounter += 1;
+    }, 1000)
+}
+
+function checkRandomSong(randomArray){
+    var i = 0;
+    console.log(playedSongArray);
+    while(i < randomArray.length){
+        if(playedSongArray.includes(randomArray[i])){
+            i++;
+        }
+        else{
+            return i;
+            break;
+        }
+    }
+    if(i >= randomArray.length){
+        return -1;
+    }
+}
+
+async function playNextSong(){
+    if(currentPlayingSong.next != null){
+        currentPlayingSong = currentPlayingSong.next;
+        curClickedSongPlay(currentPlayingSong.id, currentPlayingSong.src, currentPlayingSong.img_src, currentPlayingSong.songName, currentPlayingSong.songSinger, 1);
+    }
+    else{
+        try {
+            let res = await fetch(`http://localhost:8000/random/${currentPlayingSong.songName}`);
+            let random = await res.json();
+            console.log("Random Check: " + checkRandomSong(random));
+            if(random[0]._id == currentPlayingSong.id){
+                playNextSong();
+            }
+            else{
+                curClickedSongPlay(random[0]._id, random[0].song_src, random[0].album_img, random[0].song_name, random[0].singers, 0);
+            }
+        }catch(error) {
+            console.log(error);
+        }
+    }
+}
+function playPrevSong(){
+    currentPlayingSong = currentPlayingSong.prev;
+    curClickedSongPlay(currentPlayingSong.id, currentPlayingSong.src, currentPlayingSong.img_src, currentPlayingSong.songName, currentPlayingSong.songSinger, 1);
+}
+function afterAd(){
+    document.getElementsByClassName('p_prev')[0].disabled = false;
+    document.getElementsByClassName('p_prev')[2].disabled = false;
+    progress.disabled = false;
+    ad = 0;
+    currentPlayingSong = currentPlayingSong.prev;
+    playNextSong();
+}
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>

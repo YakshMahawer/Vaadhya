@@ -1,0 +1,59 @@
+.player{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+}
+.player_bar{
+    height: 5px;
+    background-color: rgb(157, 150, 150);
+}
+.innerbar{
+    background-color: greenyellow;
+    height: 4.5px;
+}
+.main_player{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(47, 44, 44);
+    display: flex;
+}
+.song_logo img{
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    position: absolute;
+    left: 25px;
+    bottom: 5px;
+    background-color: black !important;
+    object-fit: contain !important;
+}
+.song_details{
+    margin-left: 125px;
+}
+
+
+.song_name{
+    margin-top: 15px;
+    font-family: 'Rubik', sans-serif;
+    color: antiquewhite;
+    font-size: 22px;
+    margin-bottom: -16px;
+}
+
+.song_singers{
+    font-family: 'Lora', serif;
+    color: aliceblue;
+}
+
+.player_buttons button{
+    background-color: transparent;
+    color: aquamarine;
+    border: none;
+    font-size: 28px;
+}
+
+.player_buttons{
+    right: 70px;
+    bottom: 25px;
+    position: absolute;
+}
